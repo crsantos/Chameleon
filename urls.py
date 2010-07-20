@@ -1,17 +1,29 @@
 from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
+from chameleon.reader.models import *
+from reader.views import *
+import os.path
+from django.views.generic import list_detail
 from django.contrib import admin
+site_media = os.path.join( os.path.dirname(__file__), 'media' )
+
 admin.autodiscover()
 
+source_list = {
+    "queryset" : Source.objects.order_by('name'),
+    "extra_context" : {'title': "Sources"},
+    "paginate_by": 1,
+    'template_object_name': 'source'
+}
+
 urlpatterns = patterns('',
-    # Example:
-    # (r'^chameleon/', include('chameleon.foo.urls')),
 
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    
+    # Browsing
+	url(r'^$', index, name='index_view'),
+    (r'^sources/$', list_detail.object_list, source_list),
+    
+    #Site media - manage static content
+	(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': site_media }),
+	
 )
