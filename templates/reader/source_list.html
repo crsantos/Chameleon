@@ -4,7 +4,7 @@
 {% block content %}
 <ul>
 	{% for obj in source_list %}
-		<li>{{obj}}</li>
+		<li><a href="/reader/source/{{obj.slug}}">{{obj}}</a></li>
 	{% endfor %}
 </ul>
 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+{% if search %}
+
+<ul>
+	{% for obj in search %}
+		<li><a href="/reader/source/{{obj.slug}}">{{obj}}</a></li>
+	{% endfor %}
+</ul>
+
+{% else  %}
+	<form action="." method="get" accept-charset="utf-8">
+		<label for="search">search</label><input type="text" name="q" value="" id="search">
+		<p><input type="submit" value="Continue &rarr;"></p>
+	</form>
+{% endif %}
+
+{% endblock %}

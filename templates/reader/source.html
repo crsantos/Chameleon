@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<h1 id="source_page">{{source}}</h1>
+<p>Description: {{source.description}}</p>
+<p>URL: {{source.url}}</p>
+<p>Author: {{source.author}}</p>
+{% endblock %}
