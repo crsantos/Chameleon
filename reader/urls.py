@@ -9,13 +9,29 @@ source_list = {
     "paginate_by": 1,
     'template_object_name': 'source'
 }
-
+tag_list = {
+    "queryset" : Tag.objects.order_by('name'),
+    "extra_context" : {'title': "Tags"},
+    "paginate_by": 1,
+    'template_object_name': 'tag'
+}
+article_list = {
+    "queryset" : Article.objects.order_by('name'),
+    "extra_context" : {'title': "Articles"},
+    "paginate_by": 1,
+    'template_object_name': 'article'
+}
 urlpatterns = patterns('',
 
     # Browsing
     url(r'^$', index, name="reader_index"),
-    url(r'^sources/$', list_detail.object_list, source_list, name="cenas"),
+    url(r'^sources/$', list_detail.object_list, source_list, name="sources"),
+    url(r'^source/(?P<slug>[-\w]+)/$', source, name="source"),
     
-    url(r'^source/(?P<slug>[-\w]+)/$', source, name="cenas"),
+    url(r'^tags/$', list_detail.object_list, tag_list, name="tags"),
+	url(r'^tag/(?P<slug>[-\w]+)/$', tag, name="tag"),
 	
+	url(r'^articles/$', list_detail.object_list, article_list, name="articles"),
+	url(r'^article/(?P<slug>[-\w]+)/$', article, name="article"),
+    
 )

@@ -67,7 +67,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.humanize',
     'django.contrib.flatpages',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'reader',
     'south',
@@ -88,6 +87,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL="/"
 
 if DEVELOPMENT_MODE:
 
