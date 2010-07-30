@@ -4,6 +4,6 @@
 {% block content %}
 <h1 id="source_page">{{article}}</h1>
 <p>Description: {{article.description}}</p>
-<p>URL: {{article.url}}</p>
+<p>URL: <a href="{{article.url}}">{{article.url}}</a></p>
 <p>Author: {{article.source}}</p>
 {% endblock %}

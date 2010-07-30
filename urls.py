@@ -22,8 +22,10 @@ urlpatterns = patterns('',
     url(r'^search/', search , name="search"),
     
     
+    
     # reader urls
     (r'^reader/', include('chameleon.reader.urls') ),
+    
     
     
     #user management
@@ -32,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^accounts/login/', 'django.contrib.auth.views.login' , name="login" ),
     url(r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
     (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
+    
     
     
     #Site media - manage static content
