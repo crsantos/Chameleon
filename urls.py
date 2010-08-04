@@ -36,7 +36,6 @@ urlpatterns = patterns('',
     (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
     
     
-    
     #Site media - manage static content
 	(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': site_media }),
 	

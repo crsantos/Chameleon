@@ -13,9 +13,19 @@
 	{% if user.is_authenticated %}
 	  <a href="{% url logout %}">Log out</a>
 	{% else %}
-	  <a href="{% url login %}">Log in</a>
+	  <a href="{% url login %}">Log in</a> | <a href="{% url create %}">Create</a>
 	{% endif %}
 	
+	Messages:
+	{% if messages %} 
+		<div class="notification">
+			<ul class="messages"> 
+				{% for message in messages %} 
+				<li>{{ message }}</li> 
+				{% endfor %} 
+			</ul>
+		</div>
+	{% endif %}	
 	{% block content %}{% endblock %}
 	
 </body>

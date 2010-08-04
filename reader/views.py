@@ -11,10 +11,10 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.forms  import PasswordResetForm
 from django.contrib.auth.tokens  import default_token_generator
+from django.contrib import messages
 ######################################################################
 
 def index(request):
-
     return render_to_response('reader/index.html',
         {
             'title': "Chameleon"
@@ -75,11 +75,25 @@ def article(request,slug):
 
 def create_account(request):
     
-    if request.method=="POST":
-        return HttpResponse("post")
+    if request.user.is_anonymous():    
+
+        if request.method=="POST":
+            form = UserCreationForm( request.POST )
+            if form.is_valid():
+                user = form.save()
+            return HttpResponseRedirect(reverse('index_view'))
+        else:
+            form = UserCreationForm()
+        return render_to_response('registration/register.html',
+            {
+                'title': "Register Account",
+                'form': form,
+            },context_instance=RequestContext(request))
+
     else:
-        return HttpResponse("get")
-        
+        messages.add_message(request, messages.INFO,"Already logged in...")
+        return HttpResponseRedirect(reverse('index_view'))
+    
 ######################################################################
 
 def logout_view(request):
