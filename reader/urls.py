@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^$', index, name="reader_index"),
     url(r'^sources/$', list_detail.object_list, source_list, name="sources"),
     url(r'^source/(?P<slug>[-\w]+)/$', source, name="source"),
+    url(r'^sources/add/$', add_source, name="add_source"),
+    
     
     url(r'^tags/$', list_detail.object_list, tag_list, name="tags"),
 	url(r'^tag/(?P<slug>[-\w]+)/$', tag, name="tag"),

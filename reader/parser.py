@@ -13,5 +13,5 @@ for entry in d['entries']:
 
 print "\n"+50*"*"
 
-print "\nTests\n"
-print [entry['content'] for entry in d['entries']]
+# print "\nTests\n"
+# print [entry['content'] for entry in d['entries']]

@@ -208,4 +208,22 @@ def tag_cloud_page(request):
 
 ######################################################################
 
+def add_source(request):
+    """docstring for add_source"""
+
+    if request.method=='POST':
+        form = AddSourceForm(request.POST) 
+        if form.is_valid():
+            return HttpResponse(form.cleaned_data['url'])
+
+            #TODO
+            #- handle parsing and filling source info here
+            #   - check if url is RSS or home page
+            #   - parse title, content
+
+    else:
+        return render_to_response('source/add.html', {
+            'form': AddSourceForm()
+        },context_instance=RequestContext(request))
+    
 ######################################################################
