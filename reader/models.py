@@ -42,7 +42,7 @@ class Article(models.Model):
     url =           models.URLField(verify_exists=True)
     slug=           models.SlugField(max_length=100, blank=True, unique=True)
     source=         models.ForeignKey(Source)
-    tags=           models.ManyToManyField(Tag,related_name="tags")
+    tags=           models.ManyToManyField(Tag, related_name="articles")
     
     def __unicode__(self):
         return self.name

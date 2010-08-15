@@ -14,9 +14,10 @@
 	{# {% load slugify %} #}
 	
 	{% for tag in tags %}
-	<a href="/tag/{{ tag.name|slugify|urlencode }}/"
+	<a href="{% url tag tag.slug %}"
+	
 	class="tag-cloud-{{ tag.weight }}">
-	{{ tag.name|escape }}</a>
+	{{ tag.slug|escape }}</a>
 	{% endfor %}
 </div>
 {% endblock %}

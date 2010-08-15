@@ -3,5 +3,19 @@
 
 {% block content %}
 <h1 id="tag_page">{{tag.name}}</h1>
-<p>Description: {{tag.description}}</p>
+<p>Description: {{tag.description|safe}}</p>
+
+<h2>Articles tagged with {{tag.name}}</h2>
+<ul>
+	{% for article in articles %}
+	<li>
+		<p>Name: <a href="{{article.url}}">{{article.name}}</a></p>
+		<p>Description: {{article.description|safe}}</p>
+		<p>Source: <a href="{% url source article.source.slug %}">{{article.source.slug}}</a></p>
+	</li>
+	<hr>
+	{% endfor %}
+
+</ul>
+
 {% endblock %}

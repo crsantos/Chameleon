@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     
     url(r'^tags/$', list_detail.object_list, tag_list, name="tags"),
 	url(r'^tag/(?P<slug>[-\w]+)/$', tag, name="tag"),
+    url(r'^tagcloud/$', tag_cloud_page, name="tagcloud"),
+    
 	
 	url(r'^articles/$', list_detail.object_list, article_list, name="articles"),
 	url(r'^article/(?P<slug>[-\w]+)/$', article, name="article"),

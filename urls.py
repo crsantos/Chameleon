@@ -30,9 +30,6 @@ urlpatterns = patterns('',
     # reader urls
     (r'^reader/', include('chameleon.reader.urls') ),
     
-    #tagcloud
-    url(r'^tagcloud/$', tag_cloud_page, name="tagcloud"),
-    
     #user management
     url(r'^accounts/create/', create_account , name="create"),
     url(r'^accounts/logout/', logout_view, name="logout" ),

@@ -54,9 +54,12 @@ def source(request,slug):
 
 @login_required
 def tag(request,slug):
+    tag = get_object_or_404(Tag, slug=slug) 
+    articles = tag.articles.order_by('-id')
     return render_to_response('reader/tag.html',
         {
             'title': "Chameleon tags",
+            'articles': articles,
             'tag': Tag.objects.get(slug=slug)
 
         },context_instance=RequestContext(request))
@@ -182,9 +185,9 @@ def tag_cloud_page(request):
 	MAX_WEIGHT = 5
 	tags = Tag.objects.order_by('name')
 	# Calculate tag, min and max counts.
-	min_count = max_count = tags[0].source_set.count()
+	min_count = max_count = tags[0].articles.count()
 	for tag in tags:
-		tag.count = tag.playlists.count()
+		tag.count = tag.articles.count()
 		if tag.count < min_count:
 			min_count = tag.count
 		if max_count < tag.count:
