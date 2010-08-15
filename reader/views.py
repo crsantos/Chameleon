@@ -6,12 +6,14 @@ from django.template import loader, Context, RequestContext
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from reader.views import *
-from chameleon.reader.models import *
+from reader.forms import *
+from reader.models import *
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.forms  import PasswordResetForm
 from django.contrib.auth.tokens  import default_token_generator
 from django.contrib import messages
+
 ######################################################################
 
 def index(request):
@@ -102,3 +104,105 @@ def logout_view(request):
     
 ######################################################################
 
+# FRIENDSHIPS
+
+def friends(request, username):
+	user = get_object_or_404(User, username=username) 
+	friends = [friendship.to_friend for friendship in user.friend_set.all()] 
+	#friend_playlists = Playlist.objects.filter(user__in=friends).order_by('-id') 
+	variables = RequestContext(request, {
+		'username': username, 
+		'friends': friends, 
+		#'playlists': friend_playlists[:10],
+	})
+	return render_to_response('friends/index.html', variables)
+
+######################################################################
+
+@login_required
+def friend_add(request): 
+	if request.GET.has_key('username'): 
+		friend = get_object_or_404(User, username=request.GET['username']) 
+		friendship = Friendship( 
+    		from_friend=request.user, 
+    		to_friend=friend 
+		)
+		
+		try:
+			friendship.save()
+			request.user.message_set.create( message='%s was added to your friend list.' % friend.username )
+		except:
+			request.user.message_set.create( message='%s is already a friend of yours.' % friend.username )
+		
+		return HttpResponseRedirect('/friends/%s/' % request.user.username
+		)
+	else: 
+		raise Http404
+
+
+@login_required
+def friend_invite(request): 
+  if request.method == 'POST': 
+      form = FriendInviteForm(request.POST) 
+      if form.is_valid(): 
+          invitation = Invitation( 
+              name = form.cleaned_data['name'], 
+              email = form.cleaned_data['email'], 
+              code = User.objects.make_random_password(20), 
+              sender = request.user 
+          )
+          
+          invitation.save() # saves invitation
+          
+          try:
+              invitation.send() #tries to send() invitation
+              request.user.message_set.create( message='An invitation was sent to %s.' % invitation.email )
+          except:
+              request.user.message_set.create( message='There was an error while sending the invitation.' )
+
+          return HttpResponseRedirect('/friend/invite/') 
+  else: 
+      form = FriendInviteForm()
+  variables = RequestContext(request, {
+          'form': form
+  })
+  return render_to_response('friends/friend_invite.html', variables)
+   
+
+def friend_accept(request, code):
+  invitation = get_object_or_404(Invitation, code__exact=code)
+  request.session['invitation'] = invitation.id
+  return HttpResponseRedirect(reverse('create'))
+
+######################################################################
+
+#tag cloud
+
+def tag_cloud_page(request):
+	MAX_WEIGHT = 5
+	tags = Tag.objects.order_by('name')
+	# Calculate tag, min and max counts.
+	min_count = max_count = tags[0].source_set.count()
+	for tag in tags:
+		tag.count = tag.playlists.count()
+		if tag.count < min_count:
+			min_count = tag.count
+		if max_count < tag.count:
+			max_count = tag.count
+	# Calculate count range. Avoid dividing by zero.
+	range = float(max_count - min_count)
+	if range == 0.0:
+		range = 1.0
+	# Calculate tag weights.
+	for tag in tags:
+		tag.weight = int(
+			MAX_WEIGHT * (tag.count - min_count) / range
+		)
+	return render_to_response('reader/tag_cloud_page.html', {
+		'tags': tags,
+		'user': request.user
+	})
+
+######################################################################
+
+######################################################################

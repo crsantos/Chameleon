@@ -22,6 +22,10 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 SITE_HOST = '127.0.0.1:8080'
 
+ITEMS_PER_PAGE=5
+
+LAST_X_DAYS=10
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'vhw0!w*7k2jcz5r2sanlm@ygn+psp5fa&06#fpczw2fj7fr8i('
 
@@ -98,6 +102,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL="/"
 
 if DEVELOPMENT_MODE:

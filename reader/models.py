@@ -42,6 +42,7 @@ class Article(models.Model):
     url =           models.URLField(verify_exists=True)
     slug=           models.SlugField(max_length=100, blank=True, unique=True)
     source=         models.ForeignKey(Source)
+    tags=           models.ManyToManyField(Tag,related_name="tags")
     
     def __unicode__(self):
         return self.name
@@ -51,3 +52,15 @@ class Article(models.Model):
 
     class Admin:
         search_fields = ['name', 'description', 'source']
+
+class Friendship(models.Model):
+	from_friend =   models.ForeignKey(User, related_name='friend_set')
+	to_friend =     models.ForeignKey(User, related_name='to_friend_set')
+
+	def __unicode__(self):
+		values = {'from' : self.from_friend.username, 'to' : self.to_friend.username }
+		return '[%(from)s] friend of [%(to)s]' % values
+
+
+	class Meta: 
+		unique_together = (('to_friend', 'from_friend'), )

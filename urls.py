@@ -19,14 +19,19 @@ urlpatterns = patterns('',
             { 'template': 'osd/opensearch.xml',
               'mimetype': 'application/opensearchdescription+xml' },
               name="opensearch"),
-    url(r'^search/', search , name="search"),
     
-    
+    # social network
+    url(r'^friends/(\w+)/', friends , name="friends"),
+    # (r'^friend/add/$', friend_add),
+    url(r'^friend/invite/$', friend_invite, name="invite"),
+    # (r'^friend/accept/(\w+)/$', friend_accept),
+	
     
     # reader urls
     (r'^reader/', include('chameleon.reader.urls') ),
     
-    
+    #tagcloud
+    url(r'^tagcloud/$', tag_cloud_page, name="tagcloud"),
     
     #user management
     url(r'^accounts/create/', create_account , name="create"),
