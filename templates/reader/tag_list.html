@@ -8,8 +8,6 @@
 	{% endfor %}
 </ul>
 
-<p>{% if has_previous %}<a href="?page={{ previous }}">Previous</a>  | {% endif %}
-Page {{ page }} of {{ pages }}
-{% if has_next %} | <a href="?page={{ next }}">Next</a>{% endif %}</p>
+{% include "reader/_paginate.html" %}
 
 {% endblock %}
