@@ -1,0 +1,14 @@
+<div class="menu">
+	<ul>
+		{% if user.is_authenticated %}
+			<li><a href="{% url logout %}">Log out</a></li>
+		{% else %}
+			<li><a href="{% url login %}">Log in</a></li>
+			<li><a href="{% url create %}">Create</a></li>
+		{% endif %}
+		<li><a href="{% url sources %}">sources</a></li>
+		<li><a href="{% url articles %}">articles</a></li>
+		<li><a href="{% url tags %}">tags</a></li> 
+	</ul>
+	<div class="clear"></div>
+</div>

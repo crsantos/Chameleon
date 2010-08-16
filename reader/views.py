@@ -220,6 +220,29 @@ def add_source(request):
             #- handle parsing and filling source info here
             #   - check if url is RSS or home page
             #   - parse title, content
+            
+            import feedparser
+            d = feedparser.parse(form.cleaned_data['url'])
+
+            print "New src: %s" % d['feed']['title']
+
+            source = Source(
+                name="",
+                description="",
+                url=form.cleaned_data['url'],
+                author=request.user
+            )
+            source.save()
+            
+            print "\nParsing ENTRIES:\n"
+            for entry in d['entries']:
+                article = Article(
+                    name=str(entry['title']),
+                    description=str(entry['content'][0]['value']),
+                    url=str(entry['links'][0]['href']),
+                    source=source
+                )
+                article.save()
 
     else:
         return render_to_response('source/add.html', {

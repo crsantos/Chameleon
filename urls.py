@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     # reader urls
     (r'^reader/', include('chameleon.reader.urls') ),
     
+    #(r'^accounts/', include('registration.urls')),
     #user management
     url(r'^accounts/create/', create_account , name="create"),
     url(r'^accounts/logout/', logout_view, name="logout" ),

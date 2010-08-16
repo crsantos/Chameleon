@@ -10,13 +10,6 @@
 	<!-- Date: 2010-07-20 -->
 </head>
 <body>
-	{% if user.is_authenticated %}
-	  <a href="{% url logout %}">Log out</a>
-	{% else %}
-	  <a href="{% url login %}">Log in</a> | <a href="{% url create %}">Create</a>
-	{% endif %}
-	
-	Messages:
 	{% if messages %} 
 		<div class="notification">
 			<ul class="messages"> 
@@ -25,7 +18,10 @@
 				{% endfor %} 
 			</ul>
 		</div>
-	{% endif %}	
+	{% endif %}
+	
+	{% include "reader/_nav.html" %}
+	
 	{% block content %}{% endblock %}
 	
 </body>

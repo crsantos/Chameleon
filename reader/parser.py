@@ -6,10 +6,14 @@ print d['feed']['title']
 
 print "\nENTRIES:\n"
 for entry in d['entries']:
-    print 40*"-"
-    print "title: "+str(entry['title'])
-    print "links: "+str(entry['links'][0]['href'])
-    print "content: "+str(entry['content'][0]['value'])
+    for tags in entry['tags']:
+        print tags['term'].split(",")
+    print 10*"-"
+    
+    # print 40*"-"
+    # print "title: "+str(entry['title'])
+    # print "links: "+str(entry['links'][0]['href'])
+    # print "content: "+str(entry['content'][0]['value'])
 
 print "\n"+50*"*"
 

@@ -20,8 +20,6 @@ DEVELOPMENT_MODE = not (platform.node() in DEPLOYMENT_SERVERS)
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-SITE_HOST = '127.0.0.1:8080'
-
 ITEMS_PER_PAGE=5
 
 LAST_X_DAYS=10
@@ -62,6 +60,8 @@ MEDIA_URL = '/media/'
 # Examples: "http://foo.com/media/", "/media/".
 #ADMIN_MEDIA_PREFIX = '/media/'
 ADMIN_MEDIA_PREFIX = MEDIA_URL+'admin/'
+
+ACCOUNT_ACTIVATION_DAYS=7
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -123,6 +123,8 @@ if DEVELOPMENT_MODE:
     MEDIA_ROOT = '/Users/crsantos/dev/chameleon/media'
 
     ROOT_URLCONF = 'chameleon.urls'
+
+    SITE_HOST = '127.0.0.1:8080'
 
     TEMPLATE_DIRS = (
         # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

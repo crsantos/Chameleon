@@ -2,6 +2,9 @@
 {% block title %}{{title}}{% endblock %}
 
 {% block content %}
+
+<a href="{% url add_source %}">add</a>
+
 <ul>
 	{% for obj in source_list %}
 		<li><a href="/reader/source/{{obj.slug}}">{{obj}}</a></li>
