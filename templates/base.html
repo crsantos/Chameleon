@@ -7,34 +7,43 @@
 	<title>{% block title %}{% endblock %}</title>
 	<meta name="author" content="crsantos">
 	<link rel="stylesheet" href="/media/css/grid.css" type="text/css" media="screen" title="no title"
-
 	<link rel="stylesheet" href="/media/css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<!-- Date: 2010-07-20 -->
 </head>
 <body>
-	{% if messages %} 
-		<div class="notification">
-			<ul class="messages"> 
-				{% for message in messages %} 
-				<li>{{ message }}</li> 
-				{% endfor %} 
-			</ul>
-		</div>
-	{% endif %}
-	
-	{% include "_nav.html" %}
-	
-	{# <div class="grid_3" id="sidebar"><p>220px</p></div>	 #}
-	{# <div class="grid_9" id="content"><p>700px</p></div> #}
-	{# <div class="clear">&nbsp;</div> #}
 
-	
-	
-	{% block content %}{% endblock %}
-	
-	{% block sidebar %} {% include "_sidebar.html" %} {% endblock %}
-	
+	<div class="container container_12">
+
+		{% if messages %} 
+			<div class="grid_12 notification">
+				<ul class="messages"> 
+					{% for message in messages %} 
+					<li>{{ message }}</li> 
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+
+		{% include "_nav.html" %}
+
+		
+		<div class="grid_9" id="content">
+			{% block content %}{% endblock %}
+		</div>
+		<div class="grid_3" id="sidebar">
+			{% block sidebar %} {% include "_sidebar.html" %} {% endblock %}
+		</div>	
+		<div class="clear">&nbsp;</div>
+		
+		
+
+		
+
 	{% include "_footer.html" %}
+		
+	</div>
+	
+
 	
 </body>
 </html>

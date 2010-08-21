@@ -38,9 +38,16 @@ h3{
 .tag-cloud-4 { font-size: 180%; } 
 .tag-cloud-5 { font-size: 200%; }
 
+.lightshadow{
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
 #content{
     background-color: #DDD;
 }
 #sidebar{
     background-color: #EEE;
+}
+#footer{
+    background-color: #DDD;
 }
