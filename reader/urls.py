@@ -5,19 +5,19 @@ from django.views.generic import list_detail
 
 source_list = {
     "queryset" : Source.objects.order_by('name'),
-    "extra_context" : {'title': "Sources"},
+    "extra_context" : {'title': "Sources", 'tags': tag_cloud()},
     "paginate_by": 1,
     'template_object_name': 'source'
 }
 tag_list = {
     "queryset" : Tag.objects.order_by('name'),
-    "extra_context" : {'title': "Tags"},
+    "extra_context" : {'title': "Tags", 'tags': tag_cloud()},
     "paginate_by": 1,
     'template_object_name': 'tag'
 }
 article_list = {
     "queryset" : Article.objects.order_by('name'),
-    "extra_context" : {'title': "Articles"},
+    "extra_context" : {'title': "Articles", 'tags': tag_cloud()},
     "paginate_by": 1,
     'template_object_name': 'article'
 }
@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     
     url(r'^tags/$', list_detail.object_list, tag_list, name="tags"),
 	url(r'^tag/(?P<slug>[-\w]+)/$', tag, name="tag"),
-    url(r'^tagcloud/$', tag_cloud_page, name="tagcloud"),
+    # url(r'^tagcloud/$', tag_cloud_page, name="tagcloud"),
     
 	
 	url(r'^articles/$', list_detail.object_list, article_list, name="articles"),

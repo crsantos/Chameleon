@@ -19,7 +19,8 @@ from django.contrib import messages
 def index(request):
     return render_to_response('reader/index.html',
         {
-            'title': "Chameleon"
+            'title': "Chameleon",
+            'tags': tag_cloud()
 
         },context_instance=RequestContext(request))
 
@@ -33,11 +34,14 @@ def search(request):
             {
                 'title': "Chameleon search",
                 'search': Source.objects.filter(name__icontains=q),
+                'tags': tag_cloud()
+                
             },context_instance=RequestContext(request))
     else:
         return render_to_response('search/search.html',
             {
                 'title': "Chameleon search",
+                'tags': tag_cloud()
             },context_instance=RequestContext(request))
             
 ######################################################################
@@ -46,7 +50,8 @@ def source(request,slug):
     return render_to_response('reader/source.html',
         {
             'title': "Chameleon search",
-            'source': Source.objects.get(slug=slug)
+            'source': Source.objects.get(slug=slug),
+            'tags': tag_cloud()
 
         },context_instance=RequestContext(request))
 
@@ -60,7 +65,8 @@ def tag(request,slug):
         {
             'title': "Chameleon tags",
             'articles': articles,
-            'tag': Tag.objects.get(slug=slug)
+            'tag': Tag.objects.get(slug=slug),
+            'tags': tag_cloud()
 
         },context_instance=RequestContext(request))
 
@@ -71,7 +77,8 @@ def article(request,slug):
     return render_to_response('reader/article.html',
         {
             'title': "Chameleon articles",
-            'article': Article.objects.get(slug=slug)
+            'article': Article.objects.get(slug=slug),
+            'tags': tag_cloud()
 
         },context_instance=RequestContext(request))
 
@@ -93,6 +100,8 @@ def create_account(request):
             {
                 'title': "Register Account",
                 'form': form,
+                'tags': tag_cloud()
+                
             },context_instance=RequestContext(request))
 
     else:
@@ -115,7 +124,8 @@ def friends(request, username):
 	#friend_playlists = Playlist.objects.filter(user__in=friends).order_by('-id') 
 	variables = RequestContext(request, {
 		'username': username, 
-		'friends': friends, 
+		'friends': friends,
+		'tags': tag_cloud()
 		#'playlists': friend_playlists[:10],
 	})
 	return render_to_response('friends/index.html', variables)
@@ -181,7 +191,7 @@ def friend_accept(request, code):
 
 #tag cloud
 
-def tag_cloud_page(request):
+def tag_cloud():
 	MAX_WEIGHT = 5
 	tags = Tag.objects.order_by('name')
 	# Calculate tag, min and max counts.
@@ -201,10 +211,7 @@ def tag_cloud_page(request):
 		tag.weight = int(
 			MAX_WEIGHT * (tag.count - min_count) / range
 		)
-	return render_to_response('reader/tag_cloud_page.html', {
-		'tags': tags,
-		'user': request.user
-	})
+	return tags
 
 ######################################################################
 
@@ -246,7 +253,8 @@ def add_source(request):
 
     else:
         return render_to_response('source/add.html', {
-            'form': AddSourceForm()
+            'form': AddSourceForm(),
+            'tags': tag_cloud()
         },context_instance=RequestContext(request))
     
 ######################################################################

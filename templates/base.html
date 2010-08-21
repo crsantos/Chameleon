@@ -6,6 +6,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>{% block title %}{% endblock %}</title>
 	<meta name="author" content="crsantos">
+	<link rel="stylesheet" href="/media/css/grid.css" type="text/css" media="screen" title="no title"
+
 	<link rel="stylesheet" href="/media/css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<!-- Date: 2010-07-20 -->
 </head>
@@ -20,9 +22,19 @@
 		</div>
 	{% endif %}
 	
-	{% include "reader/_nav.html" %}
+	{% include "_nav.html" %}
+	
+	{# <div class="grid_3" id="sidebar"><p>220px</p></div>	 #}
+	{# <div class="grid_9" id="content"><p>700px</p></div> #}
+	{# <div class="clear">&nbsp;</div> #}
+
+	
 	
 	{% block content %}{% endblock %}
+	
+	{% block sidebar %} {% include "_sidebar.html" %} {% endblock %}
+	
+	{% include "_footer.html" %}
 	
 </body>
 </html>

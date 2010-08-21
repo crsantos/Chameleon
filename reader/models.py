@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+###########################################################################
+
 class Source(models.Model):
 
     name =          models.CharField(max_length=100)
@@ -12,8 +14,8 @@ class Source(models.Model):
     def __unicode__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return "/source/"+str(self.id)
+    def get_absolute_url(self):
+        return "/source/"+slug
 
     class Meta:
         pass
@@ -21,6 +23,7 @@ class Source(models.Model):
     class Admin:
         search_fields = ['name']
 
+###########################################################################
 
 class Tag(models.Model):
     name =          models.CharField(max_length=100)
@@ -34,7 +37,9 @@ class Tag(models.Model):
         pass
 
     class Admin:
-        search_fields = ['name']
+        search_fields = ['name','description']
+        
+###########################################################################        
         
 class Article(models.Model):
     name =          models.CharField(max_length=100)
@@ -44,6 +49,10 @@ class Article(models.Model):
     source=         models.ForeignKey(Source)
     tags=           models.ManyToManyField(Tag, related_name="articles")
     
+
+    def get_absolute_url(self):
+       return url 
+    
     def __unicode__(self):
         return self.name
 
@@ -51,7 +60,9 @@ class Article(models.Model):
         pass
 
     class Admin:
-        search_fields = ['name', 'description', 'source']
+        search_fields = ['name', 'description', 'source','url','tags']
+        
+###########################################################################
 
 class Friendship(models.Model):
 	from_friend =   models.ForeignKey(User, related_name='friend_set')
@@ -64,3 +75,5 @@ class Friendship(models.Model):
 
 	class Meta: 
 		unique_together = (('to_friend', 'from_friend'), )
+		
+###########################################################################
