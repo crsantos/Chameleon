@@ -1,7 +1,7 @@
 import os, sys
 
 sys.path.append('')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'apache.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'chameleon.settings'
 
 import django.core.handlers.wsgi
 
