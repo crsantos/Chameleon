@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^friend/invite/$', friend_invite, name="invite"),
     # (r'^friend/accept/(\w+)/$', friend_accept),
 	
+	#(r'feedjack/(.*)', include('feedjack.urls')),
     
     # reader urls
     (r'^reader/', include('chameleon.reader.urls') ),

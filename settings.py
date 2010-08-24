@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'reader',
     'south',
+    #'feedjack',
 )
 
 # TEMPLATE_CONTEXT_PROCESSORS = (
