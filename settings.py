@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-DEPLOYMENT_SERVERS = ["cenas.crsantos.info"]
+DEPLOYMENT_SERVERS = ["crop.floodbit.org"]
 
 DEVELOPMENT_MODE = not (platform.node() in DEPLOYMENT_SERVERS)
 
