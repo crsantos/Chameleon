@@ -2,4 +2,3 @@
 *.pyc
 *.db
 reader/migrations/
-__init__.py
