@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-DEPLOYMENT_SERVERS = [""]
+DEPLOYMENT_SERVERS = ["cenas.crsantos.info"]
 
 DEVELOPMENT_MODE = not (platform.node() in DEPLOYMENT_SERVERS)
 
@@ -106,6 +106,8 @@ LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL="/"
 
+ROOT_URLCONF = 'chameleon.urls'
+
 if DEVELOPMENT_MODE:
 
     DATABASES = {
@@ -123,7 +125,7 @@ if DEVELOPMENT_MODE:
     # Example: "/home/media/media.lawrence.com/"
     MEDIA_ROOT = '/Users/crsantos/dev/chameleon/media'
 
-    ROOT_URLCONF = 'chameleon.urls'
+    #ROOT_URLCONF = 'chameleon.urls'
 
     SITE_HOST = '127.0.0.1:8080'
 
@@ -144,10 +146,9 @@ else:
     DATABASE_USER = 'FILL_HERE'
     DATABASE_PASSWORD = 'FILL_HERE'
 
-    MEDIA_ROOT = ''
-
-    ROOT_URLCONF = 'chameleon.apache.urls'
-    SITE_HOST = ''
+    MEDIA_ROOT = '/home/client15/web69/chameleon/media'
+    #ROOT_URLCONF = 'chameleon.apache.urls'
+    SITE_HOST = 'cenas.crsantos.info'
 
 
     TEMPLATE_DIRS = (
