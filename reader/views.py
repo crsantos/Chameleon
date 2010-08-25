@@ -1,18 +1,18 @@
-from chameleon.django.shortcuts import render_to_response, get_object_or_404
-from chameleon.django.core.exceptions import ObjectDoesNotExist
-from chameleon.django.http import HttpResponse, Http404, HttpResponseRedirect
-from chameleon.django.core.urlresolvers import reverse
-from chameleon.django.template import loader, Context, RequestContext
-from chameleon.django.contrib.auth import logout
-from chameleon.django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render_to_response, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.template import loader, Context, RequestContext
+from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
 from reader.views import *
 from reader.forms import *
 from reader.models import *
-from chameleon.django.contrib.auth.decorators import login_required, permission_required
-from chameleon.django.contrib.auth.views import password_reset
-from chameleon.django.contrib.auth.forms  import PasswordResetForm
-from chameleon.django.contrib.auth.tokens  import default_token_generator
-from chameleon.django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.views import password_reset
+from django.contrib.auth.forms  import PasswordResetForm
+from django.contrib.auth.tokens  import default_token_generator
+from django.contrib import messages
 
 ######################################################################
 

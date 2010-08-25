@@ -1,4 +1,4 @@
-from chameleon.django import forms
+from django import forms
 from reader.models import *
 
 class FriendInviteForm(forms.Form): 

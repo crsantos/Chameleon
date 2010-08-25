@@ -1,10 +1,10 @@
-from chameleon.django.conf.urls.defaults import *
+from django.conf.urls.defaults import *
 from chameleon.reader.models import *
 from reader.views import *
 import os.path
-from chameleon.django.views.generic import list_detail
-from chameleon.django.contrib import admin
-from chameleon.django.views.generic.simple import direct_to_template
+from django.views.generic import list_detail
+from django.contrib import admin
+from django.views.generic.simple import direct_to_template
 site_media = os.path.join( os.path.dirname(__file__), 'media' )
 
 admin.autodiscover()

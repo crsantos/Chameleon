@@ -1,7 +1,7 @@
-from chameleon.django.conf.urls.defaults import *
+from django.conf.urls.defaults import *
 from chameleon.reader.models import *
 from reader.views import *
-from chameleon.django.views.generic import list_detail
+from django.views.generic import list_detail
 
 source_list = {
     "queryset" : Source.objects.order_by('name'),
