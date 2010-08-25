@@ -10,9 +10,9 @@ import os
 import re
 import time     # Needed for Windows
 
-from django.conf import global_settings
-from django.utils.functional import LazyObject
-from django.utils import importlib
+from chameleon.django.conf import global_settings
+from chameleon.django.utils.functional import LazyObject
+from chameleon.django.utils import importlib
 
 ENVIRONMENT_VARIABLE = "DJANGO_SETTINGS_MODULE"
 
