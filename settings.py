@@ -140,11 +140,19 @@ else:
 
     DEBUG = False
     CACHE_BACKEND = 'db://cache_table'
-    
-    DATABASE_ENGINE = 'mysql'
-    DATABASE_NAME = 'FILL_HERE'
-    DATABASE_USER = 'FILL_HERE'
-    DATABASE_PASSWORD = 'FILL_HERE'
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'chameleon.db',          # Or path to database file if using sqlite3.
+            'USER': '',                      # Not used with sqlite3.
+            'PASSWORD': '',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
+    }
+
+
 
     MEDIA_ROOT = '/home/client15/web69/chameleon/media'
     #ROOT_URLCONF = 'chameleon.apache.urls'
