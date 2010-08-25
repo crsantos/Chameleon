@@ -1,7 +1,7 @@
-from django.conf import settings
-from django.core import signals
-from django.core.exceptions import ImproperlyConfigured
-from django.db.utils import ConnectionHandler, ConnectionRouter, load_backend, DEFAULT_DB_ALIAS, \
+from chameleon.django.conf import settings
+from chameleon.django.core import signals
+from chameleon.django.core.exceptions import ImproperlyConfigured
+from chameleon.django.db.utils import ConnectionHandler, ConnectionRouter, load_backend, DEFAULT_DB_ALIAS, \
                             DatabaseError, IntegrityError
 from django.utils.functional import curry
 
