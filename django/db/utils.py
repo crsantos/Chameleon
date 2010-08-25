@@ -1,9 +1,9 @@
 import inspect
 import os
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+from chameleon.django.conf import settings
+from chameleon.django.core.exceptions import ImproperlyConfigured
+from chameleon.django.utils.importlib import import_module
 
 DEFAULT_DB_ALIAS = 'default'
 
