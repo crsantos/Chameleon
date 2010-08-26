@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
-from chameleon.reader.models import *
 from reader.views import *
+from reader.models import *
 import os.path
+
 from django.views.generic import list_detail
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
@@ -15,6 +16,7 @@ urlpatterns = patterns('',
 
     # Browsing
     url(r'^$', index, name='index_view'),
+    
     url(r'^opensearch.xml$', direct_to_template,
             { 'template': 'osd/opensearch.xml',
               'mimetype': 'application/opensearchdescription+xml' },

@@ -7,25 +7,24 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    # ('Carlos Santos', 'carlosricardosantos@gmail.com'),
 )
 
 MANAGERS = ADMINS
-
 INTERNAL_IPS = ('127.0.0.1',)
-
 DEPLOYMENT_SERVERS = ["crop.floodbit.org"]
-
 DEVELOPMENT_MODE = not (platform.node() in DEPLOYMENT_SERVERS)
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
-
 ITEMS_PER_PAGE=5
-
 LAST_X_DAYS=10
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'vhw0!w*7k2jcz5r2sanlm@ygn+psp5fa&06#fpczw2fj7fr8i('
+
+DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = ''             # Or path to database file if using sqlite3.
+DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
+DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -46,10 +45,9 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
-USE_L10N = True
-
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
@@ -61,65 +59,57 @@ MEDIA_URL = '/media/'
 #ADMIN_MEDIA_PREFIX = '/media/'
 ADMIN_MEDIA_PREFIX = MEDIA_URL+'admin/'
 
-ACCOUNT_ACTIVATION_DAYS=7
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'e_me8mun&r^310&%5+q5l5czdz^r%2f*es6i=i1zuw2-niu9_l'
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.load_template_source',
+    'django.template.loaders.app_directories.load_template_source',
+#     'django.template.loaders.eggs.load_template_source',
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+)
+
+LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
+LOGIN_REDIRECT_URL="/"
+ROOT_URLCONF = 'chameleon.urls'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.messages',
+    # 'django.contrib.messages',
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'django.contrib.admin',
     'reader',
     'south',
-    #'feedjack',
 )
 
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#     "django.contrib.auth.context_processors.auth",
-#     "django.core.context_processors.debug",
-#     "django.core.context_processors.i18n",
-#     "django.core.context_processors.media",
-#     "django.contrib.messages.context_processors.messages",
-# )
 
-
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-#    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-)
-
-LOGIN_URL = '/accounts/login/'
-LOGOUT_URL = '/accounts/logout/'
-LOGIN_REDIRECT_URL="/"
-
-ROOT_URLCONF = 'chameleon.urls'
 
 if DEVELOPMENT_MODE:
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'chameleon.db',          # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-        }
-    }
+
+    DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+    DATABASE_NAME = 'chameleon.db'             # Or path to database file if using sqlite3.
+    DATABASE_USER = ''             # Not used with sqlite3.
+    DATABASE_PASSWORD = ''         # Not used with sqlite3.
+    DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
     # Absolute path to the directory that holds media.
     # Example: "/home/media/media.lawrence.com/"
@@ -141,16 +131,13 @@ else:
     DEBUG = False
     CACHE_BACKEND = 'db://cache_table'
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'chameleon.db',          # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-        }
-    }
+
+    DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+    DATABASE_NAME = ''             # Or path to database file if using sqlite3.
+    DATABASE_USER = ''             # Not used with sqlite3.
+    DATABASE_PASSWORD = ''         # Not used with sqlite3.
+    DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 
 
@@ -158,14 +145,15 @@ else:
     #ROOT_URLCONF = 'chameleon.apache.urls'
     SITE_HOST = 'cenas.crsantos.info'
 
-
     TEMPLATE_DIRS = (
-        '',
+        '/home/client15/web69/chameleon/templates',
     )
 
-    DEFAULT_FROM_EMAIL = 'Sender <someone@whatever.domain.com>'
+    DEFAULT_FROM_EMAIL = 'Chameleon <someone@whatever.domain.com>'
     #EMAIL_USE_TLS = True
     EMAIL_HOST = 'localhost'
     #EMAIL_HOST_USER = ''
     #EMAIL_HOST_PASSWORD = ''
     #EMAIL_PORT = 587
+
+

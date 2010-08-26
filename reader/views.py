@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.forms  import PasswordResetForm
 from django.contrib.auth.tokens  import default_token_generator
-from django.contrib import messages
+#from django.contrib import messages
 
 ######################################################################
 
