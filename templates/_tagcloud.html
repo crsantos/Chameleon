@@ -3,7 +3,7 @@
 	{# {% load slugify %} #}
 	
 	{% for tag in tags %}
-	<a href="{% url tag tag.slug %}"
+	<a href="{# {% url tag tag.slug %} #}"
 	
 	class="tag-cloud-{{ tag.weight }}">
 	{{ tag.slug|escape }}</a>

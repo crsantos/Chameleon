@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from chameleon.reader.models import *
-from reader.views import *
+from chameleon.reader.views import *
 from django.views.generic import list_detail
 
 source_list = {
