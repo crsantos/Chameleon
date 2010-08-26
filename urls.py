@@ -16,27 +16,27 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
 
     # Browsing
-    url(r'^$', index, name='index_view'),
+    url(r'^$', index, 'index_view'),
     
     url(r'^opensearch.xml$', direct_to_template,
             { 'template': 'osd/opensearch.xml',
               'mimetype': 'application/opensearchdescription+xml' },
-              name="opensearch"),
+              "opensearch"),
     
     # social network
-    url(r'^friends/(\w+)/', friends , name="friends"),
+    url(r'^friends/(\w+)/', friends , "friends"),
     # (r'^friend/add/$', friend_add),
-    url(r'^friend/invite/$', friend_invite, name="invite"),
+    url(r'^friend/invite/$', friend_invite, "invite"),
     # (r'^friend/accept/(\w+)/$', friend_accept),
 	
 	#(r'feedjack/(.*)', include('feedjack.urls')),
     
     #(r'^accounts/', include('registration.urls')),
     #user management
-    url(r'^accounts/create/', create_account , name="create"),
-    url(r'^accounts/logout/', logout_view, name="logout" ),
-    url(r'^accounts/login/', 'django.contrib.auth.views.login' , name="login" ),
-    url(r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
+    url(r'^accounts/create/', create_account , "create"),
+    url(r'^accounts/logout/', logout_view, "logout" ),
+    url(r'^accounts/login/', 'django.contrib.auth.views.login' , "login" ),
+    url(r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', 'password_reset'),
     (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
     
     
