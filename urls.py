@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
-from reader.views import *
-from reader.models import *
+from chameleon.reader.views import *
+from chameleon.reader.models import *
 import os.path
 
 from django.views.generic import list_detail
@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 
     #(r'^admin/', include(admin.site.urls)),
     (r'^admin/(.*)', admin.site.root),
+
     # Browsing
     url(r'^$', index, name='index_view'),
     
@@ -30,9 +31,6 @@ urlpatterns = patterns('',
 	
 	#(r'feedjack/(.*)', include('feedjack.urls')),
     
-    # reader urls
-    (r'^reader/', include('chameleon.reader.urls') ),
-    
     #(r'^accounts/', include('registration.urls')),
     #user management
     url(r'^accounts/create/', create_account , name="create"),
@@ -41,6 +39,10 @@ urlpatterns = patterns('',
     url(r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
     (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
     
+    
+    # reader urls
+    (r'^reader/', include('chameleon.reader.urls') ),
+
     
     #Site media - manage static content
 	(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': site_media }),

@@ -21,6 +21,7 @@ article_list = {
     "paginate_by": 1,
     'template_object_name': 'article'
 }
+
 urlpatterns = patterns('',
 
     # Browsing
