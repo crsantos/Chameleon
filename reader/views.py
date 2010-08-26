@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.template import loader, Context, RequestContext
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
-from reader.forms import *
-from reader.models import *
+from chameleon.reader.forms import *
+from chameleon.reader.models import *
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.forms  import PasswordResetForm

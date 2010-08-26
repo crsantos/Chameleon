@@ -12,8 +12,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    (r'^admin/', include(admin.site.urls)),
-
+    #(r'^admin/', include(admin.site.urls)),
+    (r'^admin/(.*)', admin.site.root),
     # Browsing
     url(r'^$', index, name='index_view'),
     

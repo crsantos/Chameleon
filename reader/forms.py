@@ -1,5 +1,5 @@
 from django import forms
-from reader.models import *
+from chameleon.reader.models import *
 
 class FriendInviteForm(forms.Form): 
 	name = forms.CharField(label='Friend\'s Name')
