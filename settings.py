@@ -7,7 +7,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Carlos Santos', 'carlosricardosantos@gmail.com'),
+    ('Carlos Santos', 'carlosricardosantos@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -95,8 +95,8 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'django.contrib.admin',
-    'reader',
-    'south',
+    'chameleon.reader',
+    #'south',
 )
 
 
